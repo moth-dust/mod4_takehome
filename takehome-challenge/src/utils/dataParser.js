@@ -24,6 +24,8 @@ function formatToArray(articles){
             }
             return reformatted
         })
+    const pairedArticles = [articleSummaries, articleDetails]
+    return pairedArticles
 }
 export {
     formatToArray,
