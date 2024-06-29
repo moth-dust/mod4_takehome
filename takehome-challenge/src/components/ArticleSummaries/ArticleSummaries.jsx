@@ -41,6 +41,7 @@ function ArticleSummaries({pairedArticles}){
             return <Summary
                 key={`summary-${i}${Date.now()}`}
                 id={i+1}
+                image={summary.image}
                 title ={summary.title}
                 description = {summary.description}
                 date = {summary.date}

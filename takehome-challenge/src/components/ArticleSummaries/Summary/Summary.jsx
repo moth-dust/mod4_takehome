@@ -1,6 +1,7 @@
-function Summary({id, title, description, date,changePointer }){
+function Summary({id,image, title, description, date,changePointer }){
     return(
         <ul >
+            <img src={image}></img>
             <li className="headline">{title}</li>
             <li className="description">{description}</li>
             <li className="date">{date}</li>
