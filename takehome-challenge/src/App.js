@@ -4,11 +4,13 @@ import { mockArticles } from './mock_data/mock_data';
 import { formatToArray } from './utils/dataParser';
 import {useState, useEffect} from 'react'
 import ArticleSummaries from './components/ArticleSummaries/ArticleSummaries';
+import { getArticles } from './utils/API-Calls';
 
 function App() {
   const [articles, setArticles] = useState(mockArticles.articles)
   const [pairedArticles, setPairedArticles] = useState([])
   const [query, setQuery] = useState('')
+  const [status, setStatus] = useState('Loading')
   
   function liveSearch(){
       const summaryFiltered = pairedArticles[0].filter((article)=> article.searchString.includes(query.toLowerCase()))
@@ -21,12 +23,27 @@ function App() {
       })
       return ([summaryFiltered, detailsFiltered])
     }
-  
+  async function loadArticles(){
+    try {
+      const data = await getArticles()
+      setArticles(data.articles)
+      console.log('api call triggered, this displays to make sure sure the api is not being infinitely clalled')
+      setStatus('')
+    } catch (error) {
+      setStatus(String(error))
+    }
+  }
   useEffect(()=>{
-    setPairedArticles(formatToArray(articles))
-    if(query){
-    const filtered = liveSearch(query)
-    setPairedArticles(filtered)
+    // loadArticles() 
+  },[])
+
+  useEffect(()=>{
+    if(articles[0]){
+      setPairedArticles(formatToArray(articles))
+      if(query){
+      const filtered = liveSearch(query)
+      setPairedArticles(filtered)
+      }
     }
   },[articles,query])
 
@@ -34,7 +51,11 @@ function App() {
   return (
     <main>
       <input placeholder='search for article' onChange={(e)=>{setQuery(e.target.value)}}></input>
-      <ArticleSummaries pairedArticles = {pairedArticles}/>
+      <ArticleSummaries 
+      // status = {false}
+      pairedArticles = {pairedArticles}
+      />
+      <div>{status}</div>
     </main>
   );
 }
