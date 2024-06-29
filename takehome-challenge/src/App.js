@@ -9,14 +9,26 @@ function App() {
   const [articles, setArticles] = useState(mockArticles.articles)
   const [pairedArticles, setPairedArticles] = useState([])
   const [query, setQuery] = useState('')
-
-  useEffect(()=>{
-    let formatted = formatToArray(articles)
-    if(query){
-    formatted[0] = formatted[0].filter((article)=> article.searchString.includes(query.toLowerCase()))
+  
+  function liveSearch(){
+      const summaryFiltered = pairedArticles[0].filter((article)=> article.searchString.includes(query.toLowerCase()))
+      let detailsFiltered = []
+      summaryFiltered.forEach(article => {
+        const match = pairedArticles[1].find((detail) => detail.title == article.title)
+        if(match){
+        detailsFiltered.push(match)
+        }
+      })
+      return ([summaryFiltered, detailsFiltered])
     }
-    setPairedArticles(formatted)
-  },[articles, query])
+  
+  useEffect(()=>{
+    setPairedArticles(formatToArray(articles))
+    if(query){
+    const filtered = liveSearch(query)
+    setPairedArticles(filtered)
+    }
+  },[articles,query])
 
 
   return (
