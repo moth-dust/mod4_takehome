@@ -6,6 +6,7 @@ function formatToArray(articles){
                 image: article.urlToImage,
                 description: article.description? article.description: "No description available.",
                 date: formatDate(article.publishedAt),
+                searchString: (JSON.stringify(article).toLowerCase())
             }
             return reformatted
         })
