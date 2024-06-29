@@ -17,7 +17,6 @@ function ArticleSummaries({pairedArticles}){
     if(pairedArticles[0]){
         const summariesJSX = pairedArticles[0].map((summary, i)=>{
         if (pointer == i+1){
-            console.log(detailView)
             if(detailView.title){
                 return(
                 <Details
@@ -33,7 +32,7 @@ function ArticleSummaries({pairedArticles}){
                 )
             } else {
                 return(
-                    <div>loading...</div>
+                    <div key={'empty'}></div>
                 )
             }
 
@@ -54,7 +53,7 @@ function ArticleSummaries({pairedArticles}){
         </div>
     )
 } else {
-return(<div>loading</div>)
+return(<div></div>)
 }
 }
 
