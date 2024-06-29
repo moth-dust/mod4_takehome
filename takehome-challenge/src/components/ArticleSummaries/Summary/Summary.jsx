@@ -1,10 +1,10 @@
-function Summary({id, title, description, date}){
+function Summary({id, title, description, date,changePointer }){
     return(
-        <ul id={id}>
+        <ul >
             <li className="headline">{title}</li>
             <li className="description">{description}</li>
             <li className="date">{date}</li>
-            <button>more info ...</button>
+            <button value={id} onClick={(e)=>{changePointer(e.target.value)}}>more info ...</button>
         </ul>
     )
 }
