@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Summary from "./Summary/Summary"
+import Details from "./Details/Details"
 
 function ArticleSummaries({pairedArticles}){
     const [pointer, setPointer] = useState(0)
@@ -16,18 +17,35 @@ function ArticleSummaries({pairedArticles}){
     if(pairedArticles[0]){
         const summariesJSX = pairedArticles[0].map((summary, i)=>{
         if (pointer == i+1){
-                return(<div>hi</div>)
+            console.log(detailView)
+            if(detailView.title){
+                return(
+                <Details
+                    key={`details-${i}${Date.now()}`}
+                    title ={detailView.title}
+                    image ={detailView.image}
+                    content = {detailView.content}
+                    date = {detailView.date}
+                    sourceName = {detailView.source.name}
+                    sourceURL = {detailView.source.url}
+                    changePointer = {changePointer}
+                />
+                )
+            } else {
+                return(
+                    <div>loading...</div>
+                )
+            }
 
         } else {
             return <Summary
-            key={`summary-${i}${Date.now()}`}
-            id={i+1}
-            title ={summary.title}
-            description = {summary.description}
-            date = {summary.date}
-            changePointer = {changePointer}
-
-        />
+                key={`summary-${i}${Date.now()}`}
+                id={i+1}
+                title ={summary.title}
+                description = {summary.description}
+                date = {summary.date}
+                changePointer = {changePointer}
+            />
     }})
     return(
         <div>
