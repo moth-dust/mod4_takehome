@@ -1,4 +1,4 @@
-export const articles = {
+export const mockArticles = {
     "status": "ok",
     "totalResults": 10,
     "articles": [
