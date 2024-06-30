@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Summary from "./Summary/Summary"
 import Details from "./Details/Details"
+import "./ArticleSummaries.css"
 
 function ArticleSummaries({pairedArticles}){
     const [pointer, setPointer] = useState(0)

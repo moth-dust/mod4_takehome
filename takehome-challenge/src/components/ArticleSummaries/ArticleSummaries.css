@@ -1,0 +1,23 @@
+ul{
+    list-style: none;
+    margin-left: none;
+}
+.headline{
+    font-size: x-large;
+    font-weight: 400;
+}
+.description{
+    font-weight: 300;
+}
+.source{
+    font-size: small;
+    font-weight: 500;
+}
+.source-url{
+    font-size: small;
+    font-weight: 200;
+}
+.date{
+    font-size: smaller;
+}
+

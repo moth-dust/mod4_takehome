@@ -34,7 +34,7 @@ function App() {
     }
   }
   useEffect(()=>{
-    // loadArticles() 
+    loadArticles() 
   },[])
 
   useEffect(()=>{
@@ -50,9 +50,10 @@ function App() {
 
   return (
     <main>
+      <h1>Recent News</h1>
       <input placeholder='search for article' onChange={(e)=>{setQuery(e.target.value)}}></input>
       <ArticleSummaries 
-      // status = {false}
+      status = {false}
       pairedArticles = {pairedArticles}
       />
       <div>{status}</div>
